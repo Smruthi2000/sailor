@@ -1,0 +1,20 @@
+pipeline{
+    agent {
+        lable 'slave'
+    }
+    tools{
+        maven 'maven'
+    }
+    stages{
+        stage('checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/Smruthi2000/sailor.git'
+            }
+        }
+        stage('build'){
+            steps{
+                sh 'mvn clean verify'
+            }
+        }
+    }
+}
